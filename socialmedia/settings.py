@@ -26,7 +26,12 @@ SECRET_KEY = 'django-insecure-0w+e0(ww^)6lvm89vof%09bjsh0advtay@j_*k@o2b=0ezt^iv
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+DEBUG = os.environ.get('DEBUG', 'False') == 'True'
+SECRET_KEY = os.environ.get('SECRET_KEY', SECRET_KEY)
+
+
+ALLOWED_HOSTS = ['.onrender.com', 'localhost', '127.0.0.1']
+
 
 
 # Application definition
@@ -131,5 +136,3 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 SESSION_ENGINE = 'django.contrib.sessions.backends.db'  # Use database-backed sessions
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]  # Ensure this line is included
 
-MEDIA_URL='/images/'
-MEDIA_ROOT=os.path.join(BASE_DIR,'images')
